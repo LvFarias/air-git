@@ -99,6 +99,7 @@ async function configureProjectConfigs() {
             config = JSON.parse(config);
             newConfig.groupUrl = `${config.gitUrl}/${config.group}`;
             newConfig.projectUrl = `${config.gitUrl}/${config.group}/${config.project}`;
+            newConfig.tagUrl = `${newConfig.projectUrl}${config.gitUrl.indexOf('gitlab') > -1 ? '/tags' : '/releases/tag'}`;
 
             for (const key in config) {
                 if (config.hasOwnProperty(key)) {

@@ -61,7 +61,7 @@ async function changeBadgesInReadme(readme) {
         const dependencies = await tools.getPropertiesLength(packageJSON, 'dependencies');
 
         // tslint:disable-next-line: max-line-length
-        const badges = `[![](https://img.shields.io/badge/Version-${tagVersion}-${projectConfig.color})](${projectConfig.projectUrl}/tags/${tagVersion}) [![](https://img.shields.io/badge/Framework-${projectConfig.framework}-yellow)]() [![](https://img.shields.io/badge/Dependencies-${dependencies}-important)]() [![](https://img.shields.io/badge/Platforms-${projectConfig.platforms}-informational)]() ${badgeSize}[![](https://img.shields.io/badge/Last%20Commit-${today}-success)]() [![](https://img.shields.io/badge/Group-${projectConfig.group}-${projectConfig.color})](${projectConfig.groupUrl})`;
+        const badges = `[![](https://img.shields.io/badge/Version-${tagVersion}-${projectConfig.color})](${projectConfig.tagUrl}/${tagVersion}) [![](https://img.shields.io/badge/Framework-${projectConfig.framework}-yellow)]() [![](https://img.shields.io/badge/Dependencies-${dependencies}-important)]() [![](https://img.shields.io/badge/Platforms-${projectConfig.platforms}-informational)]() ${badgeSize}[![](https://img.shields.io/badge/Last%20Commit-${today}-success)]() [![](https://img.shields.io/badge/Group-${projectConfig.group}-${projectConfig.color})](${projectConfig.groupUrl})`;
         const oldHeader = String(readme).split('[TOC]')[0];
         let newHeader = oldHeader.split('\n');
 

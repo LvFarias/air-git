@@ -1,6 +1,6 @@
 {
 	"name": "air-git",
-	"version": "0.0.1",
+	"version": "0.1.1",
 	"description": "Description of your project.",
 	"homepage": "https://github.com/LvFarias/air-git",
 	"main": "index.js",
