@@ -1,0 +1,20 @@
+{
+	"name": "air-git",
+	"version": "0.0.1",
+	"description": "Description of your project.",
+	"homepage": "https://github.com/LvFarias/air-git",
+	"main": "index.js",
+	"scripts": {
+		"air-git": "node ./bin/air-git"
+	},
+	"bin": {
+		"air-git": "./bin/air-git"
+	},
+	"author": "Company Name",
+	"dependencies": {
+		"minimist": "^1.2.0"
+	},
+	"contributors": [
+		"User Name"
+	]
+}
