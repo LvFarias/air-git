@@ -16,18 +16,18 @@ ${colors.Bright}Global Options:${colors.Reset}
 ${colors.Bright}Available commands:${colors.Reset}
   init              Creates the CHANGELOG, README, and readmeConfig files for project from the specified directory.
   commit            Change badges in README before commit and run the "commit" afterwards.
-  p or post         Change package information.json, CHANGELOG.md, README.md, merge and push to Stage and add TAG in git.
+  p or publish         Change package information.json, CHANGELOG.md, README.md, merge and push to Stage and add TAG in git.
 
 Run "air-git --help <command>" or "air-git -h <command>" for more information about a command.
 `,
- init: `Exits for this version of Air Publish.
+ init: `Exits for this version of Air Git.
 ${colors.Bright}Use:${colors.Reset} air-git init [options]
 
 ${colors.Bright}Options:${colors.Reset}
   -h or --help
     View a help message for this command in the console.
 `,
- commit: `Exits for this version of Air Publish.
+ commit: `Exits for this version of Air Git.
 ${colors.Bright}Use:${colors.Reset} air-git commit [options]
 
 ${colors.Bright}Options:${colors.Reset}
@@ -38,7 +38,7 @@ ${colors.Bright}Options:${colors.Reset}
   -h or --help
     View a help message for this command in the console.
 `,
- publish: `Exits to this version of Air Publish.
+ publish: `Exits to this version of Air Git.
 ${colors.Bright}Use:${colors.Reset} air-git publish [options]
 
 ${colors.Bright}Options:${colors.Reset}

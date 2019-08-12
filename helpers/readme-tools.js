@@ -87,7 +87,7 @@ async function changeSumaryInReadme(readme) {
         for (const i in fullReadme) {
             if (fullReadme.hasOwnProperty(i)) {
                 const row = fullReadme[i];
-                if (row.indexOf('#') === 0 && row !== '# Airscore app' && row !== '## Sumary') {
+                if (row.indexOf('#') === 0 && row.split("#").length - 1 > 1 && row !== '## Sumary') {
                     sumaryList.push(row.substr(1));
                 }
             }

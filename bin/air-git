@@ -42,8 +42,12 @@ if (args._.length > 0) {
         case 'commit':
             commit(args);
             return;
+        case 'p':
         case 'publish':
             publish(args);
+            return;
+        default:
+            console.log(`${args._[0]} is not valid command`);
             return;
     }
 }

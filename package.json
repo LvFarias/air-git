@@ -1,7 +1,7 @@
 {
 	"name": "air-git",
-	"version": "0.1.1",
-	"description": "Description of your project.",
+	"version": "0.1.3",
+	"description": "Helper to manage Tags, README.md, CHANGELOG.md and Package.json of your Project.",
 	"homepage": "https://github.com/LvFarias/air-git",
 	"main": "index.js",
 	"scripts": {
@@ -10,11 +10,23 @@
 	"bin": {
 		"air-git": "./bin/air-git"
 	},
-	"author": "Company Name",
+	"author": "Luan Vasco de Farias <luan.vfarias@gmail.com> (https://github.com/LvFarias/)",
 	"dependencies": {
 		"minimist": "^1.2.0"
 	},
 	"contributors": [
-		"User Name"
+		"Luan Vasco de Farias <luan.vfarias@gmail.com> (https://github.com/LvFarias/)"
+	],
+	"bugs": {
+		"url": "https://github.com/LvFarias/air-git/issues"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/LvFarias/air-git.git"
+	},
+	"keywords": [
+		"air",
+		"git",
+		"air-git"
 	]
 }
