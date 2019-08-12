@@ -2,7 +2,7 @@ const tools = require('../helpers/tools');
 const createLoading = require('../helpers/loading');
 const readmeConfig = require('../files/readmeConfig');
 
-function execPublish(args) {
+function execInit(args) {
     main();
 }
 
@@ -46,4 +46,4 @@ async function main() {
     return;
 }
 
-module.exports = execPublish;
+module.exports = execInit;

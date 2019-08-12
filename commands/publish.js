@@ -27,8 +27,8 @@ function execPublish(args) {
     }
 
     const branchToPublish = (args.tm || args['to-master']) ? 'master' : 'stage';
-
     commands = [
+        'git pull',
         'git add .',
         `git commit -m "${commitMessage}"`,
         'git push',
@@ -39,7 +39,7 @@ function execPublish(args) {
         `git tag -a ${tagVersion} -m "v${tagVersion}"`,
         'git push origin --tags'
     ];
-
+    if (branchToPublish === commitBranch) commands = commands.splice(4, 4);
 
     main();
 }

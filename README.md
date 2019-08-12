@@ -1,16 +1,15 @@
 # Air Git
 
-[![](https://img.shields.io/badge/Version-0.1.3-007fb1)](https://github.com/LvFarias/air-git/releases/tag/0.1.3) [![](https://img.shields.io/badge/Framework-Node%20JS-yellow)]() [![](https://img.shields.io/badge/Dependencies-1-important)]() [![](https://img.shields.io/badge/Platforms-Linux%20|%20MacOS-informational)]() [![](https://img.shields.io/badge/Size-760K-critical)]() [![](https://img.shields.io/badge/Last%20Commit-12%20/%207%20/%202019-success)]() [![](https://img.shields.io/badge/Group-LvFarias-007fb1)](https://github.com/LvFarias)
+[![](https://img.shields.io/badge/Version-0.1.4-007fb1)](https://github.com/LvFarias/air-git/releases/tag/0.1.4) [![](https://img.shields.io/badge/Framework-Node%20JS-yellow)]() [![](https://img.shields.io/badge/Dependencies-1-important)]() [![](https://img.shields.io/badge/Platforms-Linux%20|%20MacOS-informational)]() [![](https://img.shields.io/badge/Size-836K-critical)]() [![](https://img.shields.io/badge/Last%20Commit-12%20/%207%20/%202019-success)]() [![](https://img.shields.io/badge/Group-LvFarias-007fb1)](https://github.com/LvFarias)
 
 ## Sumary
 
-- [Air Git](#air-git)
 - [Description](#description)
 - [Getting Started](#getting-started)
 - [Commands](#commands)
-      - [Init](#init)
-      - [Commit](#commit)
-      - [Publish](#publish)
+    - [Init](#init)
+    - [Commit](#commit)
+    - [Publish](#publish)
 - [Authors](#authors)
 
 ## Description
@@ -28,7 +27,7 @@ air-git --help
 ```
 
 ## Commands
-##### Init
+#### Init
 
 Creates the CHANGELOG, README, and readmeConfig files for project from the specified directory.
 ```
@@ -36,7 +35,7 @@ air-git init
 ```
 For more information about this command, call "air-git --help init"
 
-##### Commit
+#### Commit
 
 Change badges in README before commit and run the "commit" afterwards.
 ```
@@ -44,7 +43,7 @@ air-git commit -m "commit message"
 ```
 For more information about this command, call "air-git --help commit"
 
-##### Publish
+#### Publish
 
 Change package information.json, CHANGELOG.md, README.md, merge and push to Stage and add TAG in git.
 ```
