@@ -39,7 +39,7 @@ function execPublish(args) {
         `git tag -a ${tagVersion} -m "v${tagVersion}"`,
         'git push origin --tags'
     ];
-    if (branchToPublish === commitBranch) commands = commands.splice(4, 4);
+    if (branchToPublish === commitBranch) commands.splice(4, 4);
 
     main();
 }

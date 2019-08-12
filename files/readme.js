@@ -9,8 +9,8 @@ The summary will be generated automatically when the **"publish"** or **"commit"
 - [Description](#description)
 - [Getting Started](#getting-started)
 - [Build or Run](#build-or-run)
-      - [To Platform Example](#to-platform-example)
-      - [To Other Platform Example](#to-other-platform-example)
+    - [To Platform Example](#to-platform-example)
+    - [To Other Platform Example](#to-other-platform-example)
 - [Authors](#authors)
 
 ## Description
@@ -29,7 +29,7 @@ another command
 Obs: You can place a note here or delete this part.
 
 ## Build or Run
-##### To Platform Example
+#### To Platform Example
 
 description to run the command:
 \`\`\`
@@ -37,7 +37,7 @@ command to build or run
 \`\`\`
 More information about the command and what happened when it was executed.
 
-##### To Other Platform Example
+#### To Other Platform Example
 
 description to run the command:
 \`\`\`
