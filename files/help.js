@@ -48,7 +48,7 @@ ${colors.Bright}Options:${colors.Reset}
     Current branch name for Stage merge.
   -v or --version
     New version number to generate TAG, README.md and CHANGELOG.md.
-  -tm or --to-master
+  --tm or --to-master
     If called, publish to Master branch instead of Stage branch.
   -c or --change-log
     If called, opens the dialog box to put "Release Notes" in CHANGELOG.md.
