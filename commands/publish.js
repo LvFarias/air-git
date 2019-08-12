@@ -26,7 +26,7 @@ function execPublish(args) {
         return;
     }
 
-    const branchToPublish = args.tm || args['to-master'] ? 'master' : 'stage';
+    const branchToPublish = (args.tm || args['to-master']) ? 'master' : 'stage';
 
     commands = [
         'git add .',
