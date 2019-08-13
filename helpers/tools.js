@@ -1,6 +1,8 @@
 const fs = require('fs');
+const minimist = require('minimist');
 const exec = require('child_process').exec;
 const createLoading = require('./loading');
+const args = minimist(process.argv.slice(2));
 
 async function execute(command) {
     return new Promise((res, rej) => {
@@ -25,6 +27,17 @@ async function writeFile(file, content) {
             }
         });
     });
+}
+
+function debugConsole(param, ...optionalParams) {
+    if (args.verbose) {
+        console.log(param);
+        for (const i in optionalParams) {
+            if (optionalParams.hasOwnProperty(i)) {
+                console.log(optionalParams[i]);
+            }
+        }
+    }
 }
 
 async function getFolderSize(folder) {
@@ -118,6 +131,7 @@ async function configureProjectConfigs() {
 module.exports = {
     execute,
     writeFile,
+    debugConsole,
     getFolderSize,
     getSumaryLevel,
     runManyCommands,
