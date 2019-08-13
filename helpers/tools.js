@@ -1,4 +1,5 @@
 const fs = require('fs');
+const colors = require('./colors');
 const minimist = require('minimist');
 const exec = require('child_process').exec;
 const createLoading = require('./loading');
@@ -8,8 +9,8 @@ async function execute(command) {
     return new Promise((res, rej) => {
         exec(command, (err, ret, retErr) => {
             if (err) {
+                debugConsole(retErr);
                 rej(`error to execute command ${err}`);
-                console.log(retErr);
             } else {
                 res(ret || 'success');
             }
@@ -21,6 +22,7 @@ async function writeFile(file, content) {
     return new Promise((res, rej) => {
         fs.writeFile(file, content, function (err) {
             if (err) {
+                debugConsole(err);
                 rej(`error in write file: ${file}`);
             } else {
                 res('success');
@@ -31,12 +33,14 @@ async function writeFile(file, content) {
 
 function debugConsole(param, ...optionalParams) {
     if (args.verbose) {
-        console.log(param);
+        console.log(colors.Bright + colors.bg.White + colors.fg.Black + '#### VERBOSE ####' + colors.Reverse);
+        console.log(colors.bg.White + colors.fg.Black + param + colors.Reverse);
         for (const i in optionalParams) {
             if (optionalParams.hasOwnProperty(i)) {
-                console.log(optionalParams[i]);
+                console.log(optionalParams[i] + colors.Reverse);
             }
         }
+        console.log(colors.Bright + colors.bg.White + colors.fg.Black + '#### VERBOSE ####' + colors.Reverse);
     }
 }
 

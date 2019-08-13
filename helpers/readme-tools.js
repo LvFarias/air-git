@@ -5,7 +5,7 @@ let packageJSON = {};
 let projectConfig = {};
 
 const todayDate = new Date();
-const today = `${todayDate.getDate()}%20/%20${todayDate.getMonth()}%20/%20${todayDate.getFullYear()}`;
+const today = `${todayDate.getDate()}%20/%20${todayDate.getMonth() + 1}%20/%20${todayDate.getFullYear()}`;
 
 async function getNewReadme(readme, pkJSON) {
     packageJSON = pkJSON;

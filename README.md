@@ -1,6 +1,6 @@
 # Air Git
 
-[![](https://img.shields.io/badge/Version-0.1.6-007fb1)](https://github.com/LvFarias/air-git/releases/tag/0.1.6) [![](https://img.shields.io/badge/Framework-Node%20JS-yellow)]() [![](https://img.shields.io/badge/Dependencies-1-important)]() [![](https://img.shields.io/badge/Platforms-Linux%20|%20MacOS-informational)]() [![](https://img.shields.io/badge/Size-1.1M-critical)]() [![](https://img.shields.io/badge/Last%20Commit-13%20/%207%20/%202019-success)]() [![](https://img.shields.io/badge/Group-LvFarias-007fb1)](https://github.com/LvFarias)
+[![](https://img.shields.io/badge/Version-0.1.7-007fb1)](https://github.com/LvFarias/air-git/releases/tag/0.1.7) [![](https://img.shields.io/badge/Framework-Node%20JS-yellow)]() [![](https://img.shields.io/badge/Dependencies-1-important)]() [![](https://img.shields.io/badge/Platforms-Linux%20|%20MacOS-informational)]() [![](https://img.shields.io/badge/Size-1.2M-critical)]() [![](https://img.shields.io/badge/Last%20Commit-13%20/%208%20/%202019-success)]() [![](https://img.shields.io/badge/Group-LvFarias-007fb1)](https://github.com/LvFarias)
 
 ## Sumary
 
