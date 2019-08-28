@@ -28,7 +28,7 @@ async function deleteExamplesLines(readme) {
 }
 async function changeDescriptionInReadme(readme) {
     return new Promise(async res => {
-        const oldDescription = String(readme).split('## Description')[1].split('## Getting Started')[0];
+        const oldDescription = String(readme).split('## Description')[1].split('#')[0];
         const newDescription = `\n\n${packageJSON.description}\n\n`;
 
         readme = String(readme).replace(oldDescription, newDescription);
@@ -83,7 +83,7 @@ async function changeSumaryInReadme(readme) {
         let newSumary = `\n\n`;
         const sumaryList = [];
         const fullReadme = String(readme).split('\n');
-        const oldSumary = String(readme).split('## Sumary')[1].split('## Description')[0];
+        const oldSumary = String(readme).split('## Sumary')[1].split('#')[0];
         for (const i in fullReadme) {
             if (fullReadme.hasOwnProperty(i)) {
                 const row = fullReadme[i];
