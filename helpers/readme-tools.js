@@ -84,7 +84,6 @@ async function changeSumaryInReadme(readme) {
         const sumaryList = [];
         const fullReadme = String(readme).split('\n');
         const oldSumary = String(readme).split('## Sumary')[1].split('##')[0];
-        console.log(oldSumary);
         for (const i in fullReadme) {
             if (fullReadme.hasOwnProperty(i)) {
                 const row = fullReadme[i];
@@ -104,7 +103,6 @@ async function changeSumaryInReadme(readme) {
             }
         }
         newSumary += `\n`;
-        console.log(newSumary);
 
         readme = String(readme).replace(oldSumary, newSumary);
 
