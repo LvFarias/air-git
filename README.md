@@ -14,6 +14,7 @@
 - [Authors](#authors)
 
 #description)
+- [Prerequisites](#prerequisites)
 - [Getting Started](#getting-started)
 - [Commands](#commands)
     - [Init](#init)
