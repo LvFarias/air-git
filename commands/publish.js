@@ -110,7 +110,8 @@ async function main() {
     loading.close('changed "README.md"');
 
     if (!(projectConfig.gitUrl.indexOf('gitlab') > -1)) {
-        commands[7] = {
+        const index = commands.length - 3;
+        commands[index] = {
             name: 'Rodando: git push',
             command: 'git push',
         }
