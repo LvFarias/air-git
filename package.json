@@ -1,6 +1,6 @@
 {
 	"name": "air-git",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"description": "Helper to manage Tags, README.md, CHANGELOG.md and Package.json of your Project.",
 	"homepage": "https://github.com/LvFarias/air-git",
 	"main": "index.js",

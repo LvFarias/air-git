@@ -17,8 +17,13 @@ function execCommit(args) {
     }
 
     commands = [
-        'git add .',
-        `git commit -m "${commitMessage}"`,
+        {
+            command: 'git add .',
+            name: 'Adicionando arquivos modificados',
+        }, {
+            name: `Commitando com a menssagem: "${commitMessage}"`,
+            command: `git commit -m "${commitMessage}"`,
+        }
     ];
     if (runPush) commands.push('git push');
 

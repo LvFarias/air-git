@@ -62,21 +62,21 @@ function getSumaryLevel(level) {
 
 async function runManyCommands(commands = []) {
     return new Promise(async (res, rej) => {
-        let loading = createLoading(commands[0]);
+        let loading = createLoading(commands[0].name);
         for (const i in commands) {
             if (commands.hasOwnProperty(i)) {
                 const command = commands[i];
                 if (i != 0) {
-                    loading = loading.next(command);
+                    loading = loading.next(command.name);
                 }
-                const result = await execute(command).catch(err => {
+                const result = await execute(command.command).catch(err => {
                     loading.error(err);
                     rej(err);
                 });
                 if (!result) return;
             }
         }
-        loading.close(commands[commands.length - 1]);
+        loading.close(commands[commands.length - 1].name);
         res('runned all commands');
     });
 }
