@@ -5,7 +5,8 @@
 	"homepage": "https://github.com/LvFarias/air-git",
 	"main": "index.js",
 	"scripts": {
-		"air-git": "node ./bin/air-git"
+		"air-git": "node ./bin/air-git",
+		"publish-npm": "npm publish --access public"
 	},
 	"bin": {
 		"air-git": "./bin/air-git"
