@@ -25,7 +25,10 @@ function execCommit(args) {
             command: `git commit -m "${commitMessage}"`,
         }
     ];
-    if (runPush) commands.push('git push');
+    if (runPush) commands.push({
+        name: 'Rodando: git push',
+        command: 'git push',
+    });
 
     main();
 }
