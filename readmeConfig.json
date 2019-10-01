@@ -1,9 +1,14 @@
 {
 	"folderSize": ".",
-	"color": "007fb1",
 	"project": "air-git",
 	"group": "LvFarias",
 	"framework": "Node JS",
 	"platforms": "Linux | MacOS",
-	"gitUrl": "https://github.com"
+	"language": "node",
+	"version": "0.3.1",
+	"badgeColor": "#007fb1",
+	"gitPlatform": "gitHub",
+	"homologBranch": "stage",
+	"company": "Whims",
+	"deleteBranchPublush": "true"
 }

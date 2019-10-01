@@ -1,6 +1,5 @@
 const tools = require('./tools');
 
-let tagVersion = '';
 let packageJSON = {};
 let projectConfig = {};
 
@@ -11,8 +10,10 @@ async function getNewReadme(readme, pkJSON) {
     packageJSON = pkJSON;
     return new Promise(async res => {
         readme = await deleteExamplesLines(readme);
-        readme = await changeDescriptionInReadme(readme);
-        readme = await changeAuthorsInReadme(readme);
+        if (projectConfig.language === 'node') {
+            readme = await changeDescriptionInReadme(readme);
+            readme = await changeAuthorsInReadme(readme);
+        }
         readme = await changeBadgesInReadme(readme);
         readme = await changeSumaryInReadme(readme);
         res(readme);
@@ -55,13 +56,18 @@ async function changeBadgesInReadme(readme) {
         let badgeSize = '';
         if (projectConfig.folderSize !== '') {
             const sizeProject = await tools.getFolderSize(projectConfig.folderSize);
-            badgeSize = `[![](https://img.shields.io/badge/Size-${sizeProject}-critical)]() `;
+            badgeSize = `![](https://img.shields.io/badge/Size-${sizeProject}-critical)`;
         }
 
-        const dependencies = await tools.getPropertiesLength(packageJSON, 'dependencies');
+        let dependencies = 0;
+        if (projectConfig.language === 'node') {
+            dependencies = await tools.getPropertiesLength(packageJSON, 'dependencies');
+        } else if (projectConfig.language === 'python') {
+            dependencies = await tools.getDependenciesFromPython();
+        }
 
         // tslint:disable-next-line: max-line-length
-        const badges = `[![](https://img.shields.io/badge/Version-${tagVersion}-${projectConfig.color})](${projectConfig.tagUrl}/${tagVersion}) [![](https://img.shields.io/badge/Framework-${projectConfig.framework}-yellow)]() [![](https://img.shields.io/badge/Dependencies-${dependencies}-important)]() [![](https://img.shields.io/badge/Platforms-${projectConfig.platforms}-informational)]() ${badgeSize}[![](https://img.shields.io/badge/Last%20Commit-${today}-success)]() [![](https://img.shields.io/badge/Group-${projectConfig.group}-${projectConfig.color})](${projectConfig.groupUrl})`;
+        const badges = `[![](https://img.shields.io/badge/Version-${projectConfig.version}-${projectConfig.badgeColor.replace('#', '')})](${projectConfig.tagUrl}/${projectConfig.version}) ![](https://img.shields.io/badge/Framework-${projectConfig.framework}-yellow) ![](https://img.shields.io/badge/Dependencies-${dependencies}-important) ![](https://img.shields.io/badge/Platforms-${projectConfig.platforms}-informational) ${badgeSize} ![](https://img.shields.io/badge/Last%20Commit-${today}-success) [![](https://img.shields.io/badge/Group-${projectConfig.group}-${projectConfig.badgeColor.replace('#', '')})](${projectConfig.groupUrl})`;
         const oldHeader = String(readme).split('[TOC]')[0];
         let newHeader = oldHeader.split('\n');
 
@@ -113,7 +119,7 @@ async function changeSumaryInReadme(readme) {
 async function getProjectConfigs(version) {
     return new Promise((res, rej) => {
         tools.configureProjectConfigs().then(config => {
-            tagVersion = version;
+            if(!!version) { config.version = version; }
             projectConfig = config;
             res(config);
         }).catch(rej);

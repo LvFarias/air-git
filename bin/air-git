@@ -10,6 +10,7 @@ const colors = require('../helpers/colors');
 const commit = require('../commands/commit');
 const publish = require('../commands/publish');
 const initProject = require('../commands/initProject');
+const updateProject = require('../commands/updateProject');
 
 // GET ARGUMENTS
 let args = minimist(process.argv.slice(2));
@@ -37,7 +38,10 @@ if ((!!args.v || !!args.version) && args._.length <= 0) {
 if (args._.length > 0) {
     switch (args._[0]) {
         case 'init':
-            initProject(args);
+            initProject();
+            return;
+        case 'update':
+            updateProject();
             return;
         case 'commit':
             commit(args);

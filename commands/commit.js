@@ -4,7 +4,7 @@ const readmeTools = require('../helpers/readme-tools');
 
 let commands = [];
 let runPush = false;
-let tagVersion = '';
+let packageJSON = {};
 let commitMessage = '';
 
 function execCommit(args) {
@@ -34,27 +34,18 @@ function execCommit(args) {
 }
 
 async function main() {
-    let loading = createLoading('reading "package.json"');
+
+    let loading = createLoading('reading "readmeConfig.json"');
+    const projectConfig = await readmeTools.getProjectConfigs().catch(loading.error);
+    if (!projectConfig) return;
     
-    const packageContent = await tools.execute('cat package.json').catch(() => {
-        loading.error('error in reading "package.json"');
-    });
-    if (!packageContent) return;
-    
-    const packageJSON = JSON.parse(JSON.parse(JSON.stringify(packageContent)));
-    tagVersion = packageJSON.version;
-    
-    loading = loading.next('reading "README.md"', 'readed "package.json"');
+    loading = loading.next('reading "README.md"', 'readmeConfig.json"');
     const readme = await tools.execute('cat README.md').catch(() => {
         loading.error('error in reading "README.md"');
     });
     if (!readme) return;
-
-    loading = loading.next('reading "readmeConfig.json"', 'readed "README.md"');
-    const projectConfig = await readmeTools.getProjectConfigs(tagVersion).catch(loading.error);
-    if (!projectConfig) return;
     
-    loading = loading.next('generating new modified "README.md"', 'readed "readmeConfig.json"');
+    loading = loading.next('generating new modified "README.md"', 'readed "README.md"');
     const newReadme = await readmeTools.getNewReadme(readme, packageJSON);
     if (!newReadme) return;
     

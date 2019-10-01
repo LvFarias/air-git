@@ -4,6 +4,7 @@ const createLoading = require('../helpers/loading');
 const readmeTools = require('../helpers/readme-tools');
 
 let commands = [];
+let packageJSON = {};
 let tagVersion = '';
 let commitBranch = '';
 let commitMessage = '';
@@ -75,46 +76,66 @@ function execPublish(args) {
 }
 
 async function main() {
-    let loading = createLoading('reading "package.json"');
 
-    const packageContent = await tools.execute('cat package.json').catch(() => {
-        loading.error('error in reading "package.json"');
-    });
-    if (!packageContent) return;
+    let loading = createLoading('reading "readmeConfig.json"');
+    const projectConfig = await readmeTools.getProjectConfigs(tagVersion).catch(loading.error);
+    if (!projectConfig) return;
+    
+    if (projectConfig.language === 'node') {
+        loading = loading.next('reading "package.json"', 'readed "readmeConfig.json"');
+        const packageContent = await tools.execute('cat package.json').catch(() => {
+            loading.error('error in reading "package.json"');
+        });
+        if (!packageContent) return;
 
-    loading = loading.next('changing "package.json"', 'readed "package.json"');
-    const packageJSON = JSON.parse(JSON.parse(JSON.stringify(packageContent)));
-    const newPackageContent = packageContent.replace(`"version": "${packageJSON.version}"`, `"version": "${tagVersion}"`);
+        loading = loading.next('changing "package.json"', 'readed "package.json"');
+        packageJSON = JSON.parse(JSON.parse(JSON.stringify(packageContent)));
+        const newPackageContent = packageContent.replace(`"version": "${packageJSON.version}"`, `"version": "${tagVersion}"`);
+    
+        const result = await tools.writeFile('package.json', newPackageContent).catch(loading.error);
+        if (!result) return;
+    
+        loading = loading.next('changing version in "readmeConfig.json"', 'changed "package.json"');
+    } else {
+        loading = loading.next('changing version in "readmeConfig.json"', 'readed "readmeConfig.json"');
+    }
+    
+    let oldConfig = await tools.execute('cat readmeConfig.json').catch();
+    oldConfig = JSON.parse(oldConfig);
+    oldConfig.version = tagVersion;
+    
+    const result2 = await tools.writeFile('readmeConfig.json', tools.formatJSONtoFile(oldConfig)).catch(loading.error);
+    if (!result2) return;
 
-    const result = await tools.writeFile('package.json', newPackageContent).catch(loading.error);
-    if (!result) return;
+    loading = loading.next('reading "README.md"', 'changed version in "readmeConfig.json"');
 
-    loading = loading.next('reading "README.md"', 'changed "package.json"');
     const readme = await tools.execute('cat README.md').catch(() => {
         loading.error('error in reading "README.md"');
     });
     if (!readme) return;
 
-    loading = loading.next('reading "readmeConfig.json"', 'readed "README.md"');
-    const projectConfig = await readmeTools.getProjectConfigs(tagVersion).catch(loading.error);
-    if (!projectConfig) return;
-
-    loading = loading.next('generating new modified "README.md"', 'readed "readmeConfig.json"');
+    loading = loading.next('generating new modified "README.md"', 'readed "README.md"');
     const newReadme = await readmeTools.getNewReadme(readme, packageJSON);
     if (!newReadme) return;
 
     loading = loading.next('changing "README.md"', 'generated new modified "README.md"');
-    const result2 = await tools.writeFile('README.md', newReadme).catch(loading.error);
-    if (!result2) return;
+    const result3 = await tools.writeFile('README.md', newReadme).catch(loading.error);
+    if (!result3) return;
 
     loading.close('changed "README.md"');
 
-    if (!(projectConfig.gitUrl.indexOf('gitlab') > -1)) {
+    if (projectConfig.gitPlatform !== 'gitlab') {
         const index = commands.length - 3;
         commands[index] = {
             name: 'Rodando: git push',
             command: 'git push',
         }
+    }
+    if (projectConfig.deleteBranchPublush === 'true' && commitBranch !== projectConfig.homologBranch && commitBranch !== 'master') {
+        commands.push({
+            name: 'Deletando branch',
+            command: `git push origin --delete ${commitBranch}`,
+        });
     }
 
     const resultCommands = await tools.runManyCommands(commands);

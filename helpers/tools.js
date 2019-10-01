@@ -85,6 +85,21 @@ function formatJSONtoFile(json = {}) {
     return JSON.stringify(json, null, '\t');
 }
 
+async function getDependenciesFromPython() {
+    let count = 0;
+    let requirements = await execute('cat requirements.txt').catch(console.log);
+    requirements = requirements.split('\n');
+    for (const i in requirements) {
+        if (requirements.hasOwnProperty(i)) {
+            const line = requirements[i];
+            if (line.length > 0) {
+                count++;
+            } 
+        }
+    }
+    return count;
+}
+
 async function getPropertiesLength(obj, propertie) {
     return new Promise((res, rej) => {
         let count = 0;
@@ -114,9 +129,10 @@ async function configureProjectConfigs() {
             const newConfig = {};
             let config = await execute('cat readmeConfig.json');
             config = JSON.parse(config);
-            newConfig.groupUrl = `${config.gitUrl}/${config.group}`;
-            newConfig.projectUrl = `${config.gitUrl}/${config.group}/${config.project}`;
-            newConfig.tagUrl = `${newConfig.projectUrl}${config.gitUrl.indexOf('gitlab') > -1 ? '/tags' : '/releases/tag'}`;
+            const gitUrl = config.gitPlatform === 'gitlab' ? `http://gitlab.${config.company}.com.br` : 'https://github.com';
+            newConfig.groupUrl = `${gitUrl}/${config.group}`;
+            newConfig.projectUrl = `${gitUrl}/${config.group}/${config.project}`;
+            newConfig.tagUrl = `${newConfig.projectUrl}${config.gitPlatform === 'gitlab' ? '/tags' : '/releases/tag'}`;
 
             for (const key in config) {
                 if (config.hasOwnProperty(key)) {
@@ -127,6 +143,7 @@ async function configureProjectConfigs() {
 
             res(newConfig);
         } catch (error) {
+            debugConsole(error);
             rej('error in readmeConfig.json');
         }
     });
@@ -142,4 +159,5 @@ module.exports = {
     formatJSONtoFile,
     getPropertiesLength,
     configureProjectConfigs,
+    getDependenciesFromPython,
 }

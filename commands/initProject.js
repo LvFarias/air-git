@@ -2,30 +2,31 @@ const tools = require('../helpers/tools');
 const createLoading = require('../helpers/loading');
 const readmeConfig = require('../files/readmeConfig');
 
-function execInit(args) {
+function execInit() {
     main();
 }
 
 async function main() {
-    let loading = createLoading('creating "README.md"');
-
-    const readme = require('../files/readme');
-    const writeReadme = await tools.writeFile('README.md', readme).catch(() => {
-        loading.error('error in creating "README.md"');
-    });
-    if (!writeReadme) return;
-
-    loading = loading.next('creating "readmeConfig.json"', 'created "README.md"');
+    let loading = createLoading('creating "readmeConfig.json"');
     
     const writeReadmeConfig = await tools.writeFile('readmeConfig.json', tools.formatJSONtoFile(readmeConfig)).catch(() => {
         loading.error('error in creating "readmeConfig.json"');
     });
     if (!writeReadmeConfig) return;
+
+    loading = loading.next('creating "README.md"', 'created "readmeConfig.json"');
+
+    await tools.execute('mv README.md oldREADME.md').catch();
+    const readme = require('../files/readme');
+    const writeReadme = await tools.writeFile('README.md', readme).catch(() => {
+        loading.error('error in creating "README.md"');
+    });
+    if (!writeReadme) return;
     
-    loading = loading.next('reading "package.json"', 'created "readmeConfig.json"');
+    loading = loading.next('reading "package.json"', 'created "README.md"');
 
     const packageContent = await tools.execute('cat package.json').catch(() => {
-        loading.error('error in reading "package.json"');
+        loading.close('finish');
     });
     if (!packageContent) return;
     

@@ -1,6 +1,6 @@
 # Air Git
 
-[![](https://img.shields.io/badge/Version-0.3.1-007fb1)](https://github.com/LvFarias/air-git/releases/tag/0.3.1) [![](https://img.shields.io/badge/Framework-Node%20JS-yellow)]() [![](https://img.shields.io/badge/Dependencies-1-important)]() [![](https://img.shields.io/badge/Platforms-Linux%20|%20MacOS-informational)]() [![](https://img.shields.io/badge/Size-1.7M-critical)]() [![](https://img.shields.io/badge/Last%20Commit-30%20/%209%20/%202019-success)]() [![](https://img.shields.io/badge/Group-LvFarias-007fb1)](https://github.com/LvFarias)
+[![](https://img.shields.io/badge/Version-0.3.1-007fb1)](https://github.com/LvFarias/air-git/releases/tag/0.3.1) ![](https://img.shields.io/badge/Framework-Node%20JS-yellow) ![](https://img.shields.io/badge/Dependencies-0-important) ![](https://img.shields.io/badge/Platforms-Linux%20|%20MacOS-informational) ![](https://img.shields.io/badge/Size-1.7M-critical) ![](https://img.shields.io/badge/Last%20Commit-1%20/%2010%20/%202019-success) [![](https://img.shields.io/badge/Group-LvFarias-007fb1)](https://github.com/LvFarias)
 
 ## Sumary
 
@@ -15,7 +15,7 @@
 
 ## Description
 
-Helper to manage Tags, README.md, CHANGELOG.md and Package.json of your Project.
+undefined
 
 ## Prerequisites
 
@@ -58,4 +58,3 @@ For more information about this command, call "air-git --help publish"
 
 ## Authors
 
-- Luan Vasco de Farias <luan.vfarias@gmail.com> (https://github.com/LvFarias/)
