@@ -38,8 +38,21 @@ async function main() {
     let loading = createLoading('reading "readmeConfig.json"');
     const projectConfig = await readmeTools.getProjectConfigs().catch(loading.error);
     if (!projectConfig) return;
+
+    if (projectConfig.language === 'node') {
+        loading = loading.next('reading "package.json"', 'readed "readmeConfig.json"');
+        const packageContent = await tools.execute('cat package.json').catch(() => {
+            loading.error('error in reading "package.json"');
+        });
+        if (!packageContent) return;
+
+        packageJSON = JSON.parse(JSON.parse(JSON.stringify(packageContent)));
+
+        loading = loading.next('reading "README.md"', 'readed "package.json"');
+    } else {
+        loading = loading.next('reading "README.md"', 'readed "readmeConfig.json"');
+    }
     
-    loading = loading.next('reading "README.md"', 'readmeConfig.json"');
     const readme = await tools.execute('cat README.md').catch(() => {
         loading.error('error in reading "README.md"');
     });
