@@ -3,8 +3,8 @@ const readmeTools = require('../helpers/readme-tools');
 const createLoading = require('../helpers/loading');
 const readmeConfig = require('../files/readmeConfig');
 
-function execInit() {
-    main();
+async function execInit() {
+    await main();
 }
 
 async function main() {

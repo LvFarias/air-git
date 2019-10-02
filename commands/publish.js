@@ -9,7 +9,7 @@ let tagVersion = '';
 let commitBranch = '';
 let commitMessage = '';
 
-function execPublish(args) {
+async function execPublish(args) {
     tagVersion = args.v || args.version;
     commitBranch = args.b || args.branch;
     commitMessage = args.m || args.message;
@@ -72,7 +72,7 @@ function execPublish(args) {
     ];
     if (branchToPublish === commitBranch) commands.splice(3, 4);
 
-    main();
+    await main();
 }
 
 async function main() {

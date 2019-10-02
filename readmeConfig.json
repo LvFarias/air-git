@@ -5,7 +5,7 @@
 	"framework": "Node JS",
 	"platforms": "Linux | MacOS",
 	"language": "node",
-	"version": "0.4.1",
+	"version": "0.4.2",
 	"badgeColor": "#007fb1",
 	"gitPlatform": "gitHub",
 	"homologBranch": "stage",

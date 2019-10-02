@@ -16,45 +16,48 @@ const updateProject = require('../commands/updateProject');
 // GET ARGUMENTS
 let args = minimist(process.argv.slice(2));
 
-// RUN COMMANDS BY ARGUMENTS
-if (!!args.h || !!args.help) {
-    let helpReturn = help.default;
-    const helpValue = String(args._[0] || args.h || args.help);
-    
-    if (helpValue != 'true') {
-        helpReturn = help[helpValue] ? help[helpValue] : 'invalid command to help';
+async function main() {
+    // RUN COMMANDS BY ARGUMENTS
+    if (!!args.h || !!args.help) {
+        let helpReturn = help.default;
+        const helpValue = String(args._[0] || args.h || args.help);
+
+        if (helpValue != 'true') {
+            helpReturn = help[helpValue] ? help[helpValue] : 'invalid command to help';
+        }
+
+        console.log(helpReturn);
+        return;
     }
-    
-    console.log(helpReturn);
-    return;
-}
-if ((!!args.v || !!args.version) && args._.length <= 0) {
-    const pjson = require('../package.json');
-    
-    console.log(`${colors.Bright}${colors.fg.Cyan}v${pjson.version}${colors.Reset}`);
-    return;
+    if ((!!args.v || !!args.version) && args._.length <= 0) {
+        const pjson = require('../package.json');
+
+        console.log(`${colors.Bright}${colors.fg.Cyan}v${pjson.version}${colors.Reset}`);
+        return;
+    }
+
+    // RUN COMMANDS DEFAULTS
+    if (args._.length > 0) {
+        switch (args._[0]) {
+            case 'init':
+                await initProject();
+                break;
+            case 'update':
+                await updateProject();
+                break;
+            case 'commit':
+                await commit(args);
+                break;
+            case 'p':
+            case 'publish':
+                await publish(args);
+                break;
+            default:
+                console.log(`${args._[0]} is not valid command`);
+                break;
+        }
+    }
+    await versionTool.checkNewVersion();
 }
 
-// RUN COMMANDS DEFAULTS
-if (args._.length > 0) {
-    switch (args._[0]) {
-        case 'init':
-            initProject();
-            break;
-        case 'update':
-            updateProject();
-            break;
-        case 'commit':
-            commit(args);
-            break;
-        case 'p':
-        case 'publish':
-            publish(args);
-            break;
-        default:
-            console.log(`${args._[0]} is not valid command`);
-            break;
-    }
-}
-
-versionTool.checkNewVersion();
+main();

@@ -7,7 +7,7 @@ let runPush = false;
 let packageJSON = {};
 let commitMessage = '';
 
-function execCommit(args) {
+async function execCommit(args) {
     runPush = args.p || args.push;
     commitMessage = args.m || args.message;
     
@@ -30,7 +30,7 @@ function execCommit(args) {
         command: 'git push',
     });
 
-    main();
+    await main();
 }
 
 async function main() {

@@ -4,9 +4,11 @@ const colors = require('./colors');
 async function checkNewVersion() {
     let latestVersion = await tools.execute('npm view air-git version').catch();
     if (latestVersion) {
-        latestVersion = latestVersion.replace('\n', '').replace(' ', '');
-        if (latestVersion !== process.env.npm_package_version) {
-            console.log(getText(process.env.npm_package_version, latestVersion));
+        let currentVersion = await tools.execute('air-git -v').catch();
+        latestVersion = latestVersion.split('\n').join('').split(' ').join('');
+        currentVersion = currentVersion.split('\n').join('').split(' ').join('').split('v').join('').split(`${colors.fg.Cyan}`).join('').split(`${colors.Bright}`).join('');
+        if (parseFloat(latestVersion) !== parseFloat(currentVersion)) {
+            console.log(getText(currentVersion, latestVersion));
         }
     }
     return;
