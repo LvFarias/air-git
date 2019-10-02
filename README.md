@@ -1,6 +1,6 @@
 # Air Git
 
-[![](https://img.shields.io/badge/Version-0.4.0-007fb1)](https://github.com/LvFarias/air-git/releases/tag/0.4.0) ![](https://img.shields.io/badge/Framework-Node%20JS-yellow) ![](https://img.shields.io/badge/Dependencies-1-important) ![](https://img.shields.io/badge/Platforms-Linux%20|%20MacOS-informational) ![](https://img.shields.io/badge/Size-1.9M-critical) ![](https://img.shields.io/badge/Last%20Commit-1%20/%2010%20/%202019-success) [![](https://img.shields.io/badge/Group-LvFarias-007fb1)](https://github.com/LvFarias)
+[![](https://img.shields.io/badge/Version-0.4.1-007fb1)](https://github.com/LvFarias/air-git/releases/tag/0.4.1) ![](https://img.shields.io/badge/Framework-Node%20JS-yellow) ![](https://img.shields.io/badge/Dependencies-1-important) ![](https://img.shields.io/badge/Platforms-Linux%20|%20MacOS-informational) ![](https://img.shields.io/badge/Size-1.9M-critical) ![](https://img.shields.io/badge/Last%20Commit-2%20/%2010%20/%202019-success) [![](https://img.shields.io/badge/Group-LvFarias-007fb1)](https://github.com/LvFarias)
 
 ## Sumary
 
@@ -9,6 +9,7 @@
 - [Getting Started](#getting-started)
 - [Commands](#commands)
     - [Init](#init)
+    - [Update](#update)
     - [Commit](#commit)
     - [Publish](#publish)
 - [Authors](#authors)
@@ -39,6 +40,14 @@ Creates the CHANGELOG, README, and readmeConfig files for project from the speci
 air-git init
 ```
 For more information about this command, call "air-git --help init"
+
+#### Update
+
+If your version was 0.4.0 or older this command updates readmeConfig.json to the new options.
+```
+air-git update
+```
+For more information about this command, call "air-git --help update"
 
 #### Commit
 

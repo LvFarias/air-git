@@ -1,7 +1,7 @@
 const colors = require('../helpers/colors');
 
 const helpTexts = {
- default: `${colors.Reset}Manage the Tags, README and CHANGELOG of your Project.
+  default: `${colors.Reset}Manage the Tags, README and CHANGELOG of your Project.
 
 ${colors.Bright}Initial Command:${colors.Reset}
   air-git init
@@ -20,14 +20,13 @@ ${colors.Bright}Available commands:${colors.Reset}
 
 Run "air-git --help <command>" or "air-git -h <command>" for more information about a command.
 `,
- init: `Exits for this version of Air Git.
-${colors.Bright}Use:${colors.Reset} air-git init [options]
-
-${colors.Bright}Options:${colors.Reset}
-  -h or --help
-    View a help message for this command in the console.
+  init: `Exits for this version of Air Git.
+${colors.Bright}Use:${colors.Reset} air-git init
 `,
- commit: `Exits for this version of Air Git.
+  update: `Exits for this version of Air Git.
+${colors.Bright}Use:${colors.Reset} air-git update
+`,
+  commit: `Exits for this version of Air Git.
 ${colors.Bright}Use:${colors.Reset} air-git commit [options]
 
 ${colors.Bright}Options:${colors.Reset}
@@ -38,7 +37,7 @@ ${colors.Bright}Options:${colors.Reset}
   -h or --help
     View a help message for this command in the console.
 `,
- publish: `Exits to this version of Air Git.
+  publish: `Exits to this version of Air Git.
 ${colors.Bright}Use:${colors.Reset} air-git publish [options]
 
 ${colors.Bright}Options:${colors.Reset}

@@ -7,6 +7,7 @@ const minimist = require('minimist');
 // IMPORT FILES PROJECT
 const help = require('../files/help');
 const colors = require('../helpers/colors');
+const versionTool = require('../helpers/versionTool');
 const commit = require('../commands/commit');
 const publish = require('../commands/publish');
 const initProject = require('../commands/initProject');
@@ -39,19 +40,21 @@ if (args._.length > 0) {
     switch (args._[0]) {
         case 'init':
             initProject();
-            return;
+            break;
         case 'update':
             updateProject();
-            return;
+            break;
         case 'commit':
             commit(args);
-            return;
+            break;
         case 'p':
         case 'publish':
             publish(args);
-            return;
+            break;
         default:
             console.log(`${args._[0]} is not valid command`);
-            return;
+            break;
     }
 }
+
+versionTool.checkNewVersion();
