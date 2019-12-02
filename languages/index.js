@@ -10,6 +10,7 @@ const languages = {
         init_question_gitPlatform: 'Qual plataforma de git usada?',
         init_question_company: 'Qual o nome da empresa?',
         init_question_group: 'Nome do grupo na plataforma de git?',
+        init_question_username: 'Nome de usuário na plataforma de git?',
         init_question_project: 'Qual o nome do projeto?',
         init_question_imageName: 'Qual o nome da imagem de docker do projeto?',
         init_question_deploymentName: 'Qual o nome da image de deploy do projeto?',

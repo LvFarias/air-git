@@ -8,10 +8,22 @@ async function main(args) {
     let loading = createLoading(`${translate('creating')} "airgitConfig"`);
     for (const key in airgitConfig) {
         if (airgitConfig.hasOwnProperty(key)) {
-            loading.stop();
             const value = airgitConfig[key];
-            airgitConfig[key] = await tools.read(translate(`init_question_${key}`), value);
-            loading = loading.continue();
+            if (!args.y || value === '') {
+                loading.stop();
+                let question = translate(`init_question_${key}`);
+                if (airgitConfig.gitPlatform === 'github') {
+                    if (key === 'company') {
+                        delete airgitConfig[key];
+                        continue;
+                    }
+                    if (key === 'group') {
+                        question = translate(`init_question_username`);
+                    }
+                }
+                airgitConfig[key] = await tools.read(question, value);
+                loading = loading.continue();
+            }
         }
     }
     const writeAirgitConfig = await tools.writeFile('.airgitConfig', tools.formatJSONtoFile(airgitConfig)).catch(() => {
