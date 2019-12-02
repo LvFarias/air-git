@@ -1,7 +1,7 @@
 const tools = require('../helpers/tools');
 const readmeTools = require('../helpers/readme-tools');
 const createLoading = require('../helpers/loading');
-const readmeConfig = require('../files/readmeConfig');
+const readmeConfig = require('../files/airgitConfig');
 
 async function execInit() {
     await main();

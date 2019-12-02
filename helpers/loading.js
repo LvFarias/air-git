@@ -8,23 +8,7 @@ function create(text) {
         process.stdout.write(colors.fg.Yellow + '\r' + progress[current++] + ' ' + text);
         current &= 3;
     }, 150);
-    return {
-        text,
-        interval,
-        close: (confirmText) => {
-            finishLoading(interval, confirmText, text.length - confirmText.length);
-        },
-        rename: (newName) => {
-            return resetInterval(interval, newName, text.length - newName.length);
-        },
-        next: (newText, oldText = text) => {
-            finishLoading(interval, oldText, text.length - oldText.length);
-            return create(newText);
-        },
-        error: (errorText) => {
-            finishLoading(interval, errorText, text.length - errorText.length, true);
-        }
-    };
+    return createNewLoadingObj(text, interval);
 }
 
 function resetInterval(interval, text, diff) {
@@ -34,6 +18,10 @@ function resetInterval(interval, text, diff) {
         process.stdout.write(colors.fg.Yellow + '\r' + progress[current++] + ' ' + text + getClearLine(diff));
         current &= 3;
     }, 150);
+    return createNewLoadingObj(text, interval);
+}
+
+function createNewLoadingObj(text, interval) {
     return {
         text,
         interval,
@@ -49,6 +37,13 @@ function resetInterval(interval, text, diff) {
         },
         error: (errorText) => {
             finishLoading(interval, errorText, text.length - errorText.length, true);
+        },
+        stop: () => {
+            clearInterval(interval);
+            process.stdout.write('\r' + colors.Reset);
+        },
+        continue: () => {
+            return resetInterval(interval, text, text.length - text.length);
         }
     };
 }

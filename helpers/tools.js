@@ -1,9 +1,28 @@
 const fs = require('fs');
 const colors = require('./colors');
 const minimist = require('minimist');
+const readline = require('readline');
+const translate = require('./translate');
 const exec = require('child_process').exec;
 const createLoading = require('./loading');
 const args = minimist(process.argv.slice(2));
+
+async function read(question, defaultValue) {
+    return new Promise(res => {
+        const reader = readline.createInterface({ input: process.stdin, output: process.stdout });
+        reader.question(`${colors.Bright}${colors.fg.Magenta}${question} ${!!defaultValue ? '(' + defaultValue + ')' : ''} ${colors.Reset}${colors.fg.Crimson} `, function (answer) {
+            process.stdout.write('\r' + colors.Reset);
+            if (defaultValue === '' && !answer) {
+                console.log(`${colors.fg.Red}${translate('required_field')}${colors.Reset}`);
+                reader.close();
+                res(read(question, defaultValue));
+            } else {
+                reader.close();
+                res(!!answer ? answer : defaultValue);
+            }
+        });
+    });
+}
 
 async function execute(command) {
     return new Promise((res, rej) => {
@@ -23,7 +42,7 @@ async function writeFile(file, content) {
         fs.writeFile(file, content, function (err) {
             if (err) {
                 debugConsole(err);
-                rej(`error in write file: ${file}`);
+                rej(`${translate('error_write_file')} ${file}`);
             } else {
                 res('success');
             }
@@ -94,7 +113,7 @@ async function getDependenciesFromPython() {
             const line = requirements[i];
             if (line.length > 0) {
                 count++;
-            } 
+            }
         }
     }
     return count;
@@ -150,6 +169,7 @@ async function configureProjectConfigs() {
 }
 
 module.exports = {
+    read,
     execute,
     writeFile,
     debugConsole,
