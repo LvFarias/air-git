@@ -1,5 +1,5 @@
 {
-	"name": "air-git",
+	"name": "@lvfarias/air-git",
 	"version": "0.4.2",
 	"description": "Helper to manage Tags, README.md, CHANGELOG.md and Package.json of your Project.",
 	"homepage": "https://github.com/LvFarias/air-git",
@@ -10,6 +10,9 @@
 	},
 	"bin": {
 		"air-git": "./bin/air-git"
+	},
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com/"
 	},
 	"author": "Luan Vasco de Farias <luan.vfarias@gmail.com> (https://github.com/LvFarias/)",
 	"dependencies": {

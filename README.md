@@ -1,6 +1,6 @@
 # Air Git
 
-[![](https://img.shields.io/badge/Version-0.4.2-007fb1)](https://github.com/LvFarias/air-git/releases/tag/0.4.2) ![](https://img.shields.io/badge/Framework-Node%20JS-yellow) ![](https://img.shields.io/badge/Dependencies-1-important) ![](https://img.shields.io/badge/Platforms-Linux%20|%20MacOS-informational) ![](https://img.shields.io/badge/Size-2.0M-critical) ![](https://img.shields.io/badge/Last%20Commit-2%20/%2010%20/%202019-success) [![](https://img.shields.io/badge/Group-LvFarias-007fb1)](https://github.com/LvFarias)
+[![](https://img.shields.io/badge/Version-0.4.2-007fb1)](https://github.com/LvFarias/air-git/releases/tag/0.4.2) ![](https://img.shields.io/badge/Framework-Node%20JS-yellow) ![](https://img.shields.io/badge/Dependencies-1-important) ![](https://img.shields.io/badge/Platforms-Linux%20|%20MacOS-informational) ![](https://img.shields.io/badge/Size-324K-critical) ![](https://img.shields.io/badge/Last%20Commit-28%20/%209%20/%202020-success) [![](https://img.shields.io/badge/Group-LvFarias-007fb1)](https://github.com/LvFarias)
 
 ## Sumary
 
